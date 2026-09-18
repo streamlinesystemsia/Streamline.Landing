@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>streamline.systems — Agencia de IA y marketing digital</title>
+<meta name="description" content="Agencia de IA y marketing digital. Evaluamos tu negocio y armamos la solución exacta para atraer más clientes, vender más y trabajar menos. Agenda una videollamada gratis.">
+<link rel="icon" href="Streamline.systems.LOGO.jpg" type="image/jpeg">
+
+<style>
+/* =========================================================
+   TOKENS — paleta clara estilo Apple, un solo acento de marca
+   ========================================================= */
+:root{
+  --canvas:#f5f5f7;
+  --surface:#ffffff;
+  --ink:#1d1d1f;
+  --ink-2:#6e6e73;
+  --border:#d2d2d7;
+  --border-strong:#c7c7cc;
+  --accent:#5170ff;
+  --accent-ink:#ffffff;
+  --accent-tint:rgba(81,112,255,0.08);
+  --accent-border:rgba(81,112,255,0.32);
+  --radius-pill:980px;
+  --radius-card:18px;
+  --radius-panel:24px;
+  --maxw:1120px;
+  --ease:cubic-bezier(0.28,0.11,0.32,1);
+  --dur-fast:0.45s;
+  --dur:0.8s;
+}
+
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  background:var(--canvas);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui,"Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  letter-spacing:-0.016em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+::selection{ background:var(--accent); color:#fff; }
+input::placeholder, textarea::placeholder{ color:rgba(29,29,31,0.38); }
+
+h1,h2,h3{ font-weight:600; margin:0; }
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:24px; }
+
+.eyebrow{
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+
+.section-lede{ max-width:680px; }
+.section-lede h2{
+  margin-top:20px;
+  font-size:clamp(1.875rem,5vw,3rem);
+  line-height:1.1;
+  letter-spacing:-0.035em;
+  text-wrap:balance;
+}
+.section-lede p{
+  margin-top:20px;
+  font-size:clamp(1rem,2.2vw,1.125rem);
+  line-height:1.6;
+  color:var(--ink-2);
+  font-weight:400;
+  text-wrap:pretty;
+}
+.section-lede .accent{ color:var(--accent); }
+
+section{ border-top:1px solid var(--border); }
+section > .wrap{ padding-block:clamp(76px,11vw,150px); }
+
+/* =========================================================
+   BOTONES — pill, sin sombras, sin degradados
+   ========================================================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border-radius:var(--radius-pill);
+  padding:15px 26px;
+  font-size:16px;
+  font-weight:600;
+  letter-spacing:-0.01em;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.btn svg{ transition:transform var(--dur-fast) var(--ease); }
+.btn:hover svg{ transform:translateX(2px); }
+
+.btn-accent{ background:var(--accent); color:var(--accent-ink); }
+.btn-accent:hover{ background:#3d59f5; }
+
+.btn-inverse{ background:var(--ink); color:#fff; }
+.btn-inverse:hover{ background:#000; }
+
+.btn-on-accent{ background:#fff; color:var(--accent); }
+.btn-on-accent:hover{ background:rgba(255,255,255,0.86); }
+
+/* =========================================================
+   HEADER — se condensa con blur al hacer scroll
+   ========================================================= */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(245,245,247,0);
+  border-bottom:1px solid transparent;
+  transition:background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease), padding var(--dur-fast) var(--ease);
+}
+.site-header .wrap{
+  display:flex;
+  align-items:center;
+  padding-block:22px;
+  transition:padding var(--dur-fast) var(--ease);
+}
+.site-header.is-scrolled{
+  background:rgba(255,255,255,0.72);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  backdrop-filter:blur(20px) saturate(180%);
+  border-bottom-color:var(--border);
+}
+.site-header.is-scrolled .wrap{ padding-block:14px; }
+
+.brand{ display:inline-flex; align-items:center; gap:10px; }
+.brand img{ width:28px; height:28px; border-radius:7px; }
+.brand span{ font-size:15px; font-weight:600; letter-spacing:-0.02em; color:var(--ink); }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero .wrap{ padding-top:clamp(56px,11vw,128px); padding-bottom:clamp(64px,10vw,120px); }
+.hero-inner{ max-width:880px; }
+.hero h1{
+  font-size:clamp(2.5rem,8.2vw,5rem);
+  line-height:1.02;
+  letter-spacing:-0.045em;
+  text-wrap:balance;
+}
+.hero h1 .accent{ color:var(--accent); }
+.hero p{
+  margin-top:clamp(24px,4vw,32px);
+  max-width:620px;
+  font-size:clamp(1.0625rem,2.4vw,1.25rem);
+  line-height:1.62;
+  color:var(--ink-2);
+  font-weight:400;
+  text-wrap:pretty;
+}
+.hero-cta{
+  margin-top:clamp(32px,5vw,44px);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:20px;
+}
+.hero-cta .hint{ font-size:13.5px; color:var(--ink-2); letter-spacing:0.01em; }
+
+/* Intro de escala/opacidad del hero */
+.hero-el{ opacity:0; transform:translateY(16px) scale(0.985); transition:opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.hero-el.is-visible{ opacity:1; transform:none; }
+
+/* =========================================================
+   REVEAL AL SCROLL — IntersectionObserver + stagger
+   ========================================================= */
+.reveal{ opacity:0; transform:translateY(32px); transition:opacity var(--dur) var(--ease), transform var(--dur) var(--ease); transition-delay:var(--d,0ms); }
+.reveal.is-visible{ opacity:1; transform:none; }
+
+/* =========================================================
+   TARJETAS — sin sombra, jerarquía por borde
+   ========================================================= */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-card);
+  padding:clamp(26px,4vw,44px);
+  transition:border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.card:hover{ border-color:var(--border-strong); transform:translateY(-4px); }
+.card .icon{ color:var(--accent); }
+.card h3{ margin-top:22px; font-size:clamp(1.25rem,2.6vw,1.5rem); letter-spacing:-0.025em; }
+.card p{ margin-top:12px; color:var(--ink-2); line-height:1.6; font-weight:400; text-wrap:pretty; }
+
+.grid-2{
+  margin-top:clamp(40px,6vw,72px);
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
+  gap:20px;
+}
+
+/* =========================================================
+   TIRAS DESLIZABLES — beneficios / pasos / puntos de confianza
+   ========================================================= */
+.strip-shell{ position:relative; margin-top:clamp(40px,6vw,72px); }
+.strip{
+  display:flex;
+  gap:clamp(16px,3vw,32px);
+  overflow-x:auto;
+  scroll-snap-type:x proximity;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.strip::-webkit-scrollbar{ display:none; }
+.strip-item{
+  scroll-snap-align:start;
+  min-width:0;
+  flex:0 0 86%;
+  border-top:1px solid var(--border);
+  padding-top:clamp(24px,3vw,32px);
+}
+@media (min-width:760px){ .strip-item{ flex:1 1 0; } }
+
+.strip-item .num{ font-size:12px; font-weight:600; letter-spacing:0.14em; color:var(--accent); }
+.strip-item .kicker{ font-size:13px; font-weight:600; color:var(--ink-2); }
+.strip-item h3{ margin-top:16px; font-size:clamp(1.375rem,3.2vw,1.75rem); letter-spacing:-0.025em; }
+.strip-item p{ margin-top:12px; max-width:520px; font-size:clamp(1rem,2.2vw,1.0625rem); color:var(--ink-2); line-height:1.6; font-weight:400; text-wrap:pretty; }
+
+.strip-item.step{ padding:clamp(26px,3vw,34px) 0; }
+.strip-item.step h3{ margin-top:14px; font-size:clamp(1.125rem,2.4vw,1.375rem); }
+.strip-item.step p{ margin-top:10px; }
+
+.strip-item.trust{ padding-top:clamp(20px,3vw,26px); }
+.strip-item.trust .title{ font-size:15px; font-weight:600; letter-spacing:-0.02em; }
+.strip-item.trust p{ margin-top:8px; font-size:1rem; }
+
+.strip-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:var(--surface);
+  border:1px solid var(--border);
+  color:var(--ink);
+  cursor:pointer;
+  z-index:2;
+  transition:border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.strip-arrow:hover{ border-color:var(--accent); color:var(--accent); }
+.strip-arrow.prev{ left:-8px; }
+.strip-arrow.next{ right:-8px; }
+/* Solo hacen falta flechas cuando la tira desborda (una tarjeta de 86% en móvil); en desktop las 3 columnas caben completas */
+@media (min-width:760px){ .strip-arrow{ display:none; } }
+
+/* =========================================================
+   EL RESULTADO — antes / después
+   ========================================================= */
+.compare .card.before{ }
+.compare .card.after{ border-color:var(--accent-border); background:var(--accent-tint); }
+.compare .label{ font-size:11.5px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-2); }
+.compare .card.after .label{ color:var(--accent); }
+.compare p{ margin-top:18px; color:var(--ink-2); line-height:1.62; font-weight:400; text-wrap:pretty; }
+.compare .card.after p{ color:var(--ink); }
+
+/* =========================================================
+   DIAGNÓSTICO — formulario
+   ========================================================= */
+.panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-panel);
+  padding:clamp(28px,5vw,72px);
+}
+.form{
+  margin-top:clamp(32px,5vw,48px);
+  max-width:620px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.form-row{ display:flex; flex-wrap:wrap; gap:14px; }
+.form input, .form textarea{
+  background:var(--canvas);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:15px 16px;
+  color:var(--ink);
+  font-family:inherit;
+  font-size:15px;
+  outline:none;
+  transition:border-color var(--dur-fast) var(--ease);
+}
+.form input{ flex:1 1 140px; min-width:0; }
+.form textarea{ line-height:1.6; resize:vertical; }
+.form input:focus, .form textarea:focus{ border-color:var(--accent); }
+.form input:focus-visible, .form textarea:focus-visible{ outline:2px solid var(--accent-border); outline-offset:1px; }
+.form .btn{ align-self:flex-start; margin-top:6px; border:none; }
+.form .note{ margin:6px 0 0; font-size:13.5px; color:var(--ink-2); }
+
+.success{
+  margin-top:clamp(36px,5vw,56px);
+  max-width:620px;
+  border:1px solid var(--accent-border);
+  border-radius:14px;
+  padding:clamp(28px,4vw,40px);
+  background:var(--accent-tint);
+}
+.success h3{ font-size:1.375rem; letter-spacing:-0.025em; }
+.success p{ margin-top:12px; color:var(--ink-2); line-height:1.6; font-weight:400; text-wrap:pretty; }
+.success .btn{ margin-top:22px; }
+
+.hidden{ display:none !important; }
+
+/* =========================================================
+   CTA FINAL
+   ========================================================= */
+.cta-final{ background:var(--accent); color:#fff; border-top:none; }
+.cta-final .wrap{ padding-block:clamp(84px,12vw,160px); text-align:center; }
+.cta-final h2{
+  margin:0 auto;
+  max-width:760px;
+  font-size:clamp(2rem,6vw,3.75rem);
+  line-height:1.05;
+  letter-spacing:-0.04em;
+  text-wrap:balance;
+}
+.cta-final p{
+  margin:24px auto 0;
+  max-width:600px;
+  font-size:clamp(1rem,2.3vw,1.1875rem);
+  line-height:1.6;
+  color:rgba(255,255,255,0.82);
+  font-weight:400;
+  text-wrap:pretty;
+}
+.cta-final .actions{
+  margin-top:clamp(32px,5vw,44px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+}
+.cta-final .hint{ font-size:13.5px; color:rgba(255,255,255,0.75); }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer .wrap{
+  padding-block:clamp(44px,6vw,64px);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.footer-links{ display:flex; flex-wrap:wrap; align-items:center; gap:24px; font-size:14px; }
+.footer-links a{ display:inline-flex; align-items:center; gap:8px; color:var(--ink-2); transition:color var(--dur-fast) var(--ease); }
+.footer-links a:hover{ color:var(--ink); }
+.footer-copy{ font-size:13.5px; color:var(--ink-2); }
+
+/* =========================================================
+   CTA STICKY MÓVIL
+   ========================================================= */
+.sticky-cta{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  z-index:60;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,0.88);
+  -webkit-backdrop-filter:blur(16px);
+  backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  opacity:0;
+  transform:translateY(100%);
+  pointer-events:none;
+  transition:opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.sticky-cta.is-visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
+.sticky-cta .btn{ width:100%; justify-content:center; }
+@media (min-width:760px){ .sticky-cta{ display:none; } }
+
+/* =========================================================
+   ACCESIBILIDAD — respeta prefers-reduced-motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:0.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="streamline.systems — inicio">
+      <img src="Streamline.systems.LOGO.jpg" alt="streamline.systems">
+      <span>streamline.systems</span>
+    </a>
+  </div>
+</header>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-inner">
+      <h1 class="hero-el">Haz crecer tu negocio con <span class="accent">IA y marketing digital</span></h1>
+      <p class="hero-el">Somos una agencia de IA y marketing digital. Evaluamos tu negocio y armamos la solución exacta que necesitas para atraer más clientes, vender más y trabajar menos.</p>
+      <div class="hero-cta hero-el">
+        <a class="btn btn-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">
+          Agendar videollamada
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+        <span class="hint">Videollamada gratis · Sin compromiso · 30 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     SERVICIOS — IA + Marketing
+     ========================================================= -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-lede reveal">
+      <div class="eyebrow">Qué hacemos</div>
+      <h2>Una agencia de <span class="accent">IA y marketing digital</span></h2>
+      <p>No vendemos paquetes cerrados. Evaluamos tu negocio y armamos la solución exacta que necesitas — ni más, ni menos.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card reveal" style="--d:0ms">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M9 9h6v6H9z"></path><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"></path></svg></div>
+        <h3>Inteligencia Artificial</h3>
+        <p>Sistemas y agentes de IA que hacen el trabajo repetitivo, atienden a tus clientes y dan seguimiento por ti — 24/7 y sin sumar personal.</p>
+      </div>
+      <div class="card reveal" style="--d:90ms">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M17 7h4v4"></path></svg></div>
+        <h3>Marketing Digital</h3>
+        <p>Presencia, contenido y embudos que atraen a las personas correctas y las convierten en ventas de verdad.</p>
+      </div>
+    </div>
+
+    <p class="reveal" style="margin-top:clamp(36px,5vw,56px);max-width:640px;font-size:clamp(1rem,2.2vw,1.0625rem);color:var(--ink-2);line-height:1.6;font-weight:400;text-wrap:pretty">¿No sabes qué necesitas? Justo por eso empezamos con una videollamada: vemos tu negocio y te decimos qué mover primero.</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     BENEFICIOS — 01 / 02 / 03
+     ========================================================= -->
+<section id="beneficios">
+  <div class="wrap">
+    <div class="section-lede reveal">
+      <div class="eyebrow">Por qué importa</div>
+      <h2>Menos trabajo manual, <span class="accent">más resultados</span></h2>
+      <p>No se trata de tecnología por moda. Se trata de que tu negocio gane tiempo y dinero.</p>
+    </div>
+
+    <div class="strip-shell">
+      <div class="strip" data-strip="beneficios">
+        <div class="strip-item reveal" style="--d:0ms">
+          <div class="num">01</div>
+          <h3>Ahorra horas cada semana</h3>
+          <p>Delega el trabajo repetitivo a la IA y libera tiempo para vender, crear y crecer.</p>
+        </div>
+        <div class="strip-item reveal" style="--d:90ms">
+          <div class="num">02</div>
+          <h3>Captura más clientes</h3>
+          <p>Responde rápido a cada prospecto y deja de perder ventas por no contestar a tiempo.</p>
+        </div>
+        <div class="strip-item reveal" style="--d:180ms">
+          <div class="num">03</div>
+          <h3>Atención 24/7 sin contratar</h3>
+          <p>Tu negocio atiende de día y de noche, sin sumar personal ni aumentar costos.</p>
+        </div>
+      </div>
+      <button type="button" class="strip-arrow prev" data-strip-prev="beneficios" aria-label="Beneficio anterior">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+      </button>
+      <button type="button" class="strip-arrow next" data-strip-next="beneficios" aria-label="Beneficio siguiente">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CÓMO FUNCIONA — 3 pasos
+     ========================================================= -->
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-lede reveal">
+      <div class="eyebrow">Cómo funciona</div>
+      <h2>De la idea a <span class="accent">resultados</span> en 3 pasos</h2>
+      <p>Simple, claro y sin tecnicismos. Tú te enfocas en tu negocio, nosotros en la solución.</p>
+    </div>
+
+    <div class="strip-shell">
+      <div class="strip" data-strip="pasos">
+        <div class="strip-item step reveal" style="--d:0ms">
+          <div class="kicker">Paso 1</div>
+          <h3>Agenda tu videollamada</h3>
+          <p>En una videollamada de 30 min vemos tu negocio, qué te frena y qué mover primero.</p>
+        </div>
+        <div class="strip-item step reveal" style="--d:90ms">
+          <div class="kicker">Paso 2</div>
+          <h3>Diseñamos tu solución</h3>
+          <p>Armamos lo que tu negocio necesita —IA, marketing digital o ambos— a tu medida.</p>
+        </div>
+        <div class="strip-item step reveal" style="--d:180ms">
+          <div class="kicker">Paso 3</div>
+          <h3>Empiezas a ver resultados</h3>
+          <p>Lo implementamos y tú te enfocas en tu negocio mientras la solución trabaja y trae resultados.</p>
+        </div>
+      </div>
+      <button type="button" class="strip-arrow prev" data-strip-prev="pasos" aria-label="Paso anterior">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+      </button>
+      <button type="button" class="strip-arrow next" data-strip-next="pasos" aria-label="Paso siguiente">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     EL RESULTADO — before / after + 3 puntos
+     ========================================================= -->
+<section id="prueba">
+  <div class="wrap">
+    <div class="section-lede reveal">
+      <div class="eyebrow">El resultado</div>
+      <h2>De hacerlo a mano a que <span class="accent">trabaje solo</span></h2>
+      <p>Esto es lo que cambia en tu negocio cuando trabajas con nosotros.</p>
+    </div>
+
+    <div class="grid-2 compare">
+      <div class="card before reveal" style="--d:0ms">
+        <div class="label">Sin automatizar</div>
+        <p>Respuestas y seguimiento a mano. Mensajes sin contestar, citas perdidas y ventas que se enfrían por no responder a tiempo.</p>
+      </div>
+      <div class="card after reveal" style="--d:90ms">
+        <div class="label">Con streamline.systems</div>
+        <p>IA que responde y da seguimiento 24/7, y marketing que te trae clientes. Menos trabajo manual, más ventas y cero oportunidades perdidas.</p>
+      </div>
+    </div>
+
+    <div class="strip-shell" style="margin-top:clamp(40px,5vw,64px)">
+      <div class="strip" data-strip="confianza">
+        <div class="strip-item trust reveal" style="--d:0ms">
+          <div class="title">A tu medida</div>
+          <p>Sistemas hechos para tu negocio, no plantillas genéricas.</p>
+        </div>
+        <div class="strip-item trust reveal" style="--d:90ms">
+          <div class="title">Funciona 24/7</div>
+          <p>Tu negocio atiende y da seguimiento aunque tú estés dormido.</p>
+        </div>
+        <div class="strip-item trust reveal" style="--d:180ms">
+          <div class="title">Sin jerga</div>
+          <p>Te explico todo simple y te acompaño en la instalación.</p>
+        </div>
+      </div>
+      <button type="button" class="strip-arrow prev" data-strip-prev="confianza" aria-label="Punto anterior">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+      </button>
+      <button type="button" class="strip-arrow next" data-strip-next="confianza" aria-label="Punto siguiente">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     DIAGNÓSTICO — formulario de lead
+     ========================================================= -->
+<section id="diagnostico">
+  <div class="wrap">
+    <div class="panel reveal">
+      <div class="section-lede">
+        <div class="eyebrow">Diagnóstico gratis</div>
+        <h2>Dime qué te está <span class="accent">frenando</span> y te digo cómo resolverlo</h2>
+        <p>Cuéntame la tarea que más tiempo te quita o lo que más te cuesta para conseguir clientes. Te mando un diagnóstico personalizado, gratis y sin compromiso.</p>
+      </div>
+
+      <form class="form" id="diagForm">
+        <div class="form-row">
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+          <input type="email" name="email" placeholder="Tu correo" required>
+        </div>
+        <textarea name="reto" placeholder="¿Qué es lo que más tiempo te quita o lo que más te cuesta para conseguir clientes?" required rows="4"></textarea>
+        <button type="submit" class="btn btn-accent">Quiero mi diagnóstico gratis</button>
+        <p class="note">Sin spam. Te respondo personalmente.</p>
+      </form>
+
+      <div class="success hidden" id="diagSuccess">
+        <h3>¡Listo! 🎉 Recibí tu mensaje</h3>
+        <p>Te preparo tu diagnóstico y te escribo pronto. ¿Quieres adelantarte? Agenda tu videollamada ahora:</p>
+        <a class="btn btn-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">Agendar videollamada</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CTA FINAL
+     ========================================================= -->
+<section class="cta-final" id="agendar">
+  <div class="wrap">
+    <h2 class="reveal">¿Listo para que tu negocio trabaje por ti?</h2>
+    <p class="reveal" style="--d:90ms">Agenda una videollamada gratis y descubre exactamente qué puedes mejorar en tu negocio con IA y marketing. Sin compromiso.</p>
+    <div class="actions reveal" style="--d:180ms">
+      <a class="btn btn-on-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">
+        Agendar videollamada
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
+      <div class="hint">Respondemos rápido · Cupo limitado cada semana</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://instagram.com/jaden.vreal" target="_blank" rel="noopener" aria-label="Instagram personal jaden.vreal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg>
+        jaden.vreal
+      </a>
+      <a href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">Agendar videollamada</a>
+    </div>
+    <div class="footer-copy">© <span id="year"></span> streamline.systems</div>
+  </div>
+</footer>
+
+<!-- =========================================================
+     CTA STICKY MÓVIL
+     ========================================================= -->
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">
+    Agendar videollamada
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+  </a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Año dinámico del footer ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Header que se condensa con blur al hacer scroll ---------- */
+  var header = document.getElementById('siteHeader');
+  var ticking = false;
+  function updateHeader(){
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+    ticking = false;
+  }
+  function onScrollHeader(){
+    if(!ticking){ window.requestAnimationFrame(updateHeader); ticking = true; }
+  }
+  window.addEventListener('scroll', onScrollHeader, { passive:true });
+  updateHeader();
+
+  /* ---------- CTA sticky en móvil al hacer scroll ---------- */
+  var stickyCta = document.getElementById('stickyCta');
+  var mobileQuery = window.matchMedia('(max-width:759px)');
+  function updateStickyCta(){
+    var shouldShow = mobileQuery.matches && window.scrollY > 520;
+    stickyCta.classList.toggle('is-visible', shouldShow);
+  }
+  window.addEventListener('scroll', updateStickyCta, { passive:true });
+  window.addEventListener('resize', updateStickyCta);
+  updateStickyCta();
+
+  /* ---------- Reveal al hacer scroll (IntersectionObserver) ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15, rootMargin:'0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- Intro del hero (escala/opacidad al cargar) ---------- */
+  var heroEls = document.querySelectorAll('.hero-el');
+  if(reduceMotion){
+    heroEls.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    heroEls.forEach(function(el, i){
+      el.style.transitionDelay = (i * 110) + 'ms';
+    });
+    window.requestAnimationFrame(function(){
+      window.requestAnimationFrame(function(){
+        heroEls.forEach(function(el){ el.classList.add('is-visible'); });
+      });
+    });
+  }
+
+  /* ---------- Tiras deslizables (beneficios / pasos / confianza) ---------- */
+  function scrollStrip(name, dir){
+    var strip = document.querySelector('.strip[data-strip="' + name + '"]');
+    if(!strip) return;
+    var card = Array.prototype.find.call(strip.children, function(c){
+      return c.getBoundingClientRect().width > 0;
+    });
+    var w = card ? card.getBoundingClientRect().width : 0;
+    var step = w > 0 ? w + 24 : strip.clientWidth * 0.86;
+    strip.scrollBy({ left: dir * step, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+  document.querySelectorAll('[data-strip-prev]').forEach(function(btn){
+    btn.addEventListener('click', function(){ scrollStrip(btn.getAttribute('data-strip-prev'), -1); });
+  });
+  document.querySelectorAll('[data-strip-next]').forEach(function(btn){
+    btn.addEventListener('click', function(){ scrollStrip(btn.getAttribute('data-strip-next'), 1); });
+  });
+
+  /* ---------- Formulario de diagnóstico: POST JSON al webhook, sin recargar ---------- */
+  var form = document.getElementById('diagForm');
+  var success = document.getElementById('diagSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var data = Object.fromEntries(new FormData(form));
+    fetch('https://jadenvreal-n8n.pmjph3.easypanel.host/webhook/lead-diagnostico', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre: data.nombre, email: data.email, reto: data.reto })
+    }).catch(function(){});
+    form.classList.add('hidden');
+    success.classList.remove('hidden');
+  });
+})();
+</script>
+</body>
+</html>
