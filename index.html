@@ -214,7 +214,7 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   display:flex;
   gap:clamp(16px,3vw,32px);
   overflow-x:auto;
-  scroll-snap-type:x proximity;
+  scroll-snap-type:x mandatory;
   scroll-behavior:smooth;
   scrollbar-width:none;
   -webkit-overflow-scrolling:touch;
@@ -264,6 +264,8 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 .strip-arrow.next{ right:-8px; }
 /* Solo hacen falta flechas cuando la tira desborda (una tarjeta de 86% en móvil); en desktop las 3 columnas caben completas */
 @media (min-width:760px){ .strip-arrow{ display:none; } }
+/* En móvil se desliza con el dedo (swipe nativo); las flechas quedaban encima del texto */
+@media (max-width:759px){ .strip-arrow{ display:none; } }
 
 /* =========================================================
    EL RESULTADO — antes / después
@@ -424,8 +426,8 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 <section class="hero" id="top">
   <div class="wrap">
     <div class="hero-inner">
-      <h1 class="hero-el">Haz crecer tu negocio con <span class="accent">IA y marketing digital</span></h1>
-      <p class="hero-el">Somos una agencia de IA y marketing digital. Evaluamos tu negocio y armamos la solución exacta que necesitas para atraer más clientes, vender más y trabajar menos.</p>
+      <h1 class="hero-el">Sistemas <span class="accent">100% a tu medida</span> que hacen crecer tu negocio</h1>
+      <p class="hero-el">Evaluamos tu negocio, detectamos qué te frena y diseñamos la solución exacta para tu caso — con IA y marketing. Tú ves el resultado, no la tecnología.</p>
       <div class="hero-cta hero-el">
         <a class="btn btn-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">
           Agendar videollamada
@@ -569,7 +571,7 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
       <div class="strip" data-strip="confianza">
         <div class="strip-item trust reveal" style="--d:0ms">
           <div class="title">A tu medida</div>
-          <p>Sistemas hechos para tu negocio, no plantillas genéricas.</p>
+          <p>Cada sistema se diseña desde cero para tu negocio y tu problema.</p>
         </div>
         <div class="strip-item trust reveal" style="--d:90ms">
           <div class="title">Funciona 24/7</div>
