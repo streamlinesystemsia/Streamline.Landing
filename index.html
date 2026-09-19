@@ -209,7 +209,7 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 /* =========================================================
    TIRAS DESLIZABLES — beneficios / pasos / puntos de confianza
    ========================================================= */
-.strip-shell{ position:relative; margin-top:20px; }
+.strip-shell{ position:relative; margin-top:clamp(40px,6vw,72px); }
 .strip{
   display:flex;
   gap:clamp(16px,3vw,32px);
@@ -228,6 +228,9 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   padding-top:clamp(24px,3vw,32px);
 }
 @media (min-width:760px){ .strip-item{ flex:1 1 0; } }
+/* Cuando la tira tiene flechas, se reserva su carril exacto (mitad del círculo
+   + 4px de aire) para que el texto nunca quede debajo — sin adivinar. */
+.strip.has-nav .strip-item{ padding-inline:22px; }
 
 .strip-item .num{ font-size:12px; font-weight:600; letter-spacing:0.14em; color:var(--accent); }
 .strip-item .kicker{ font-size:13px; font-weight:600; color:var(--ink-2); }
@@ -242,15 +245,13 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 .strip-item.trust .title{ font-size:15px; font-weight:600; letter-spacing:-0.02em; }
 .strip-item.trust p{ margin-top:8px; font-size:1rem; }
 
-/* Fila de navegación propia, ARRIBA de la tira — nunca se superpone al texto de las tarjetas */
-.strip-nav{
-  margin-top:clamp(40px,6vw,72px);
-  display:flex;
-  justify-content:flex-end;
-  gap:10px;
-}
-.strip-nav[hidden]{ display:none; }
+/* Flechas centradas verticalmente sobre la tira, a medida: el círculo mide 36px,
+   asoma la mitad (18px) fuera de la tarjeta y la otra mitad queda en el carril
+   reservado arriba (.strip.has-nav .strip-item), así nunca pisa el texto. */
 .strip-arrow{
+  position:absolute;
+  top:var(--arrow-top, 50%);
+  transform:translateY(-50%);
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -261,8 +262,12 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   border:1px solid var(--border);
   color:var(--ink);
   cursor:pointer;
+  z-index:2;
   transition:border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
 }
+.strip-arrow[hidden]{ display:none; }
+.strip-arrow.prev{ left:-18px; }
+.strip-arrow.next{ right:-18px; }
 .strip-arrow:hover{ border-color:var(--accent); color:var(--accent); }
 .strip-arrow:disabled{ opacity:0.35; cursor:default; }
 .strip-arrow:disabled:hover{ border-color:var(--border); color:var(--ink); }
@@ -478,14 +483,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
       <p>No se trata de tecnología por moda. Se trata de que tu negocio gane tiempo y dinero.</p>
     </div>
 
-    <div class="strip-nav" data-strip-nav="beneficios" hidden>
-      <button type="button" class="strip-arrow prev" data-strip-prev="beneficios" aria-label="Beneficio anterior">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
-      </button>
-      <button type="button" class="strip-arrow next" data-strip-next="beneficios" aria-label="Beneficio siguiente">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-      </button>
-    </div>
     <div class="strip-shell">
       <div class="strip" data-strip="beneficios">
         <div class="strip-item reveal" style="--d:0ms">
@@ -504,6 +501,12 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
           <p>Tu negocio atiende de día y de noche, sin sumar personal ni aumentar costos.</p>
         </div>
       </div>
+      <button type="button" class="strip-arrow prev" data-strip-prev="beneficios" aria-label="Beneficio anterior" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+      </button>
+      <button type="button" class="strip-arrow next" data-strip-next="beneficios" aria-label="Beneficio siguiente" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -519,14 +522,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
       <p>Simple, claro y sin tecnicismos. Tú te enfocas en tu negocio, nosotros en la solución.</p>
     </div>
 
-    <div class="strip-nav" data-strip-nav="pasos" hidden>
-      <button type="button" class="strip-arrow prev" data-strip-prev="pasos" aria-label="Paso anterior">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
-      </button>
-      <button type="button" class="strip-arrow next" data-strip-next="pasos" aria-label="Paso siguiente">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-      </button>
-    </div>
     <div class="strip-shell">
       <div class="strip" data-strip="pasos">
         <div class="strip-item step reveal" style="--d:0ms">
@@ -545,6 +540,12 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
           <p>Lo implementamos y tú te enfocas en tu negocio mientras la solución trabaja y trae resultados.</p>
         </div>
       </div>
+      <button type="button" class="strip-arrow prev" data-strip-prev="pasos" aria-label="Paso anterior" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+      </button>
+      <button type="button" class="strip-arrow next" data-strip-next="pasos" aria-label="Paso siguiente" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -571,15 +572,7 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
       </div>
     </div>
 
-    <div class="strip-nav" data-strip-nav="confianza" style="margin-top:clamp(40px,5vw,64px)" hidden>
-      <button type="button" class="strip-arrow prev" data-strip-prev="confianza" aria-label="Punto anterior">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
-      </button>
-      <button type="button" class="strip-arrow next" data-strip-next="confianza" aria-label="Punto siguiente">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-      </button>
-    </div>
-    <div class="strip-shell">
+    <div class="strip-shell" style="margin-top:clamp(40px,5vw,64px)">
       <div class="strip" data-strip="confianza">
         <div class="strip-item trust reveal" style="--d:0ms">
           <div class="title">A tu medida</div>
@@ -594,6 +587,12 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
           <p>Te explico todo simple y te acompaño en la instalación.</p>
         </div>
       </div>
+      <button type="button" class="strip-arrow prev" data-strip-prev="confianza" aria-label="Punto anterior" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+      </button>
+      <button type="button" class="strip-arrow next" data-strip-next="confianza" aria-label="Punto siguiente" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -736,39 +735,28 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   }
 
   /* ---------- Tiras deslizables (beneficios / pasos / confianza) ---------- */
-  /* Misma curva --ease del resto del sitio, evaluada en JS para animar el scroll
-     a mano: así no compite con el scroll-snap nativo (scrollBy+smooth del navegador
-     y snap:mandatory a veces se pisan y se ve un salto raro al final). */
-  function makeBezierEasing(x1, y1, x2, y2){
-    function A(a1, a2){ return 1 - 3 * a2 + 3 * a1; }
-    function B(a1, a2){ return 3 * a2 - 6 * a1; }
-    function C(a1){ return 3 * a1; }
-    function calc(t, a1, a2){ return ((A(a1, a2) * t + B(a1, a2)) * t + C(a1)) * t; }
-    function slope(t, a1, a2){ return 3 * A(a1, a2) * t * t + 2 * B(a1, a2) * t + C(a1); }
-    function tForX(x){
-      var t = x;
-      for(var i = 0; i < 8; i++){
-        var s = slope(t, x1, x2);
-        if(s === 0) return t;
-        t -= (calc(t, x1, x2) - x) / s;
-      }
-      return t;
-    }
-    return function(x){ return calc(tForX(x), y1, y2); };
-  }
-  var stripEase = makeBezierEasing(0.28, 0.11, 0.32, 1);
+  /* Ease-out cúbico: respuesta inmediata al clic y frenado suave al final —
+     la sensación estándar de un carrusel. Además, mientras dura la animación
+     se apaga el scroll-snap del navegador y se restaura al terminar, para que
+     nunca compita con nuestros propios cuadros y se vea un salto al final. */
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
 
   function animateStripScroll(strip, targetLeft, duration){
     var startLeft = strip.scrollLeft;
     var delta = targetLeft - startLeft;
     if(Math.abs(delta) < 1) return;
     if(reduceMotion){ strip.scrollLeft = targetLeft; return; }
+    strip.style.scrollSnapType = 'none';
     var startTime = null;
     function frame(now){
       if(startTime === null) startTime = now;
       var t = Math.min((now - startTime) / duration, 1);
-      strip.scrollLeft = startLeft + delta * stripEase(t);
-      if(t < 1) window.requestAnimationFrame(frame);
+      strip.scrollLeft = startLeft + delta * easeOutCubic(t);
+      if(t < 1){
+        window.requestAnimationFrame(frame);
+      } else {
+        strip.style.scrollSnapType = '';
+      }
     }
     window.requestAnimationFrame(frame);
   }
@@ -784,26 +772,40 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
     var step = w > 0 ? w + gap : strip.clientWidth * 0.86;
     var max = strip.scrollWidth - strip.clientWidth;
     var target = Math.max(0, Math.min(max, strip.scrollLeft + dir * step));
-    animateStripScroll(strip, target, 450);
+    animateStripScroll(strip, target, 500);
   }
 
   /* Las flechas solo aparecen cuando la tira realmente desborda (si las 3
-     columnas caben, como en desktop, no hacen falta y no tapan nada). Los
-     botones se deshabilitan en cada extremo, y se recalculan mientras el
-     usuario desliza con el dedo o el trackpad. */
+     columnas caben, como en desktop, no hacen falta y no tapan nada). La
+     clase has-nav reserva su carril en las tarjetas (ver CSS) y los botones
+     se deshabilitan en cada extremo; todo se recalcula mientras el usuario
+     desliza con el dedo o el trackpad. */
   var stripNames = ['beneficios', 'pasos', 'confianza'];
   function updateStripNav(name){
     var strip = document.querySelector('.strip[data-strip="' + name + '"]');
-    var nav = document.querySelector('.strip-nav[data-strip-nav="' + name + '"]');
-    if(!strip || !nav) return;
+    if(!strip) return;
+    var shell = strip.closest('.strip-shell');
+    var prevBtn = shell.querySelector('[data-strip-prev]');
+    var nextBtn = shell.querySelector('[data-strip-next]');
     var max = strip.scrollWidth - strip.clientWidth;
     var hasOverflow = max > 2;
-    nav.hidden = !hasOverflow;
+    strip.classList.toggle('has-nav', hasOverflow);
+    if(prevBtn) prevBtn.hidden = !hasOverflow;
+    if(nextBtn) nextBtn.hidden = !hasOverflow;
     if(!hasOverflow) return;
-    var prevBtn = nav.querySelector('[data-strip-prev]');
-    var nextBtn = nav.querySelector('[data-strip-next]');
     if(prevBtn) prevBtn.disabled = strip.scrollLeft <= 1;
     if(nextBtn) nextBtn.disabled = strip.scrollLeft >= max - 1;
+    /* A medida: las flechas se centran en la etiqueta de arriba (01 / Paso 1 /
+       A tu medida), que siempre ocupa una sola línea — no en toda la tarjeta,
+       cuya altura varía si el título envuelve a 2 líneas y dejaría la flecha
+       cortando el texto por la mitad. */
+    var label = strip.querySelector('.strip-item .num, .strip-item .kicker, .strip-item .title');
+    if(label){
+      var shellTop = shell.getBoundingClientRect().top;
+      var labelRect = label.getBoundingClientRect();
+      var centerY = (labelRect.top + labelRect.height / 2) - shellTop;
+      shell.style.setProperty('--arrow-top', centerY + 'px');
+    }
   }
   function refreshAllStripNavs(){ stripNames.forEach(updateStripNav); }
 
