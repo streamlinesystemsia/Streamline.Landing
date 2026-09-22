@@ -303,6 +303,21 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 .compare .card.after p{ color:var(--ink); }
 
 /* =========================================================
+   FOUNDER — foto + bio de confianza antes del formulario
+   ========================================================= */
+.founder-photo{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:var(--radius-card);
+  border:1px solid var(--border);
+  box-shadow:0 0 48px var(--accent-border);
+}
+.founder-copy .accent{ color:var(--accent); font-weight:600; }
+.founder-cta{ margin-top:28px; display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+.founder-cta .hint{ font-size:13.5px; color:var(--ink-2); letter-spacing:0.01em; }
+
+/* =========================================================
    DIAGNÓSTICO — formulario
    ========================================================= */
 .panel{
@@ -633,7 +648,7 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
           <p>Primero diagnostico, después construyo. Nada a ciegas.</p>
         </div>
         <div class="strip-item trust reveal" style="--d:180ms">
-          <div class="title">Sin jerga</div>
+          <div class="title">Sin complicaciones</div>
           <p>Te explico todo simple y te acompaño en todo el proceso.</p>
         </div>
       </div>
@@ -643,6 +658,33 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
       <button type="button" class="strip-arrow next" data-strip-next="confianza" aria-label="Punto siguiente" hidden>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
       </button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOUNDER — confianza antes de agendar
+     ========================================================= -->
+<section id="founder">
+  <div class="wrap">
+    <div class="grid-2" style="align-items:center">
+      <div class="reveal" style="--d:0ms">
+        <img class="founder-photo" src="jaden.vreal.png" alt="Jaden, fundador de streamline.systems" loading="lazy">
+      </div>
+      <div class="section-lede founder-copy reveal" style="--d:90ms;max-width:none">
+        <div class="eyebrow">Founder</div>
+        <h2>Detrás de streamline.systems estoy yo.</h2>
+        <p>Soy Jaden. Empecé a los 14 con un ecommerce que llegó a facturar <span class="accent">más de $10,000 dólares al mes</span>. Ahí aprendí cómo se hace crecer un negocio de verdad.</p>
+        <p>Eso es justo lo que hago por ti. Entro a tu operación, encuentro dónde pierdes tiempo y dinero, y construyo el sistema que lo resuelve — con IA y marketing. <span class="accent">No te coloco una herramienta más encima</span>: arreglo cómo funciona tu negocio.</p>
+        <p>Mi método no cambia: primero entiendo cómo trabajas, después construyo lo que necesitas. Te lo explico simple y te acompaño en cada paso. <span class="accent">Si algo no te sirve, no te lo vendo</span>.</p>
+        <div class="founder-cta">
+          <a class="btn btn-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">
+            Agenda tu revisión gratis
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+          <span class="hint">En 30 minutos te digo qué mover primero.</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
