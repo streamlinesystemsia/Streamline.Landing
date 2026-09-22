@@ -414,27 +414,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 .footer-copy{ font-size:13.5px; color:var(--ink-2); }
 
 /* =========================================================
-   CTA STICKY MÓVIL
-   ========================================================= */
-.sticky-cta{
-  position:fixed;
-  left:0; right:0; bottom:0;
-  z-index:60;
-  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
-  background:rgba(255,255,255,0.88);
-  -webkit-backdrop-filter:blur(16px);
-  backdrop-filter:blur(16px);
-  border-top:1px solid var(--border);
-  opacity:0;
-  transform:translateY(100%);
-  pointer-events:none;
-  transition:opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
-}
-.sticky-cta.is-visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
-.sticky-cta .btn{ width:100%; justify-content:center; }
-@media (min-width:760px){ .sticky-cta{ display:none; } }
-
-/* =========================================================
    ACCESIBILIDAD — respeta prefers-reduced-motion
    ========================================================= */
 @media (prefers-reduced-motion: reduce){
@@ -673,7 +652,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
       </div>
       <div class="section-lede founder-copy reveal" style="--d:90ms;max-width:none">
         <div class="eyebrow">Founder</div>
-        <h2>Detrás de streamline.systems estoy yo.</h2>
         <p>Soy Jaden. Empecé a los 14 con un ecommerce que llegó a facturar <span class="accent">más de $10,000 dólares al mes</span>. Ahí aprendí cómo se hace crecer un negocio de verdad.</p>
         <p>Eso es justo lo que hago por ti. Entro a tu operación, encuentro dónde pierdes tiempo y dinero, y construyo el sistema que lo resuelve — con IA y marketing. <span class="accent">No te coloco una herramienta más encima</span>: arreglo cómo funciona tu negocio.</p>
         <p>Mi método no cambia: primero entiendo cómo trabajas, después construyo lo que necesitas. Te lo explico simple y te acompaño en cada paso. <span class="accent">Si algo no te sirve, no te lo vendo</span>.</p>
@@ -753,16 +731,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   </div>
 </footer>
 
-<!-- =========================================================
-     CTA STICKY MÓVIL
-     ========================================================= -->
-<div class="sticky-cta" id="stickyCta">
-  <a class="btn btn-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">
-    Agendar revisión gratis
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-  </a>
-</div>
-
 <script>
 (function(){
   "use strict";
@@ -783,17 +751,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   }
   window.addEventListener('scroll', onScrollHeader, { passive:true });
   updateHeader();
-
-  /* ---------- CTA sticky en móvil al hacer scroll ---------- */
-  var stickyCta = document.getElementById('stickyCta');
-  var mobileQuery = window.matchMedia('(max-width:759px)');
-  function updateStickyCta(){
-    var shouldShow = mobileQuery.matches && window.scrollY > 520;
-    stickyCta.classList.toggle('is-visible', shouldShow);
-  }
-  window.addEventListener('scroll', updateStickyCta, { passive:true });
-  window.addEventListener('resize', updateStickyCta);
-  updateStickyCta();
 
   /* ---------- Reveal al hacer scroll (IntersectionObserver) ---------- */
   var revealEls = document.querySelectorAll('.reveal');
