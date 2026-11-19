@@ -22,7 +22,6 @@
   --accent-border:rgba(81,112,255,0.32);
   --radius-pill:980px;
   --radius-card:18px;
-  --radius-panel:24px;
   --maxw:1120px;
   --ease:cubic-bezier(0.28,0.11,0.32,1);
   --dur-fast:0.45s;
@@ -105,9 +104,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 .btn-accent{ background:var(--accent); color:var(--accent-ink); }
 .btn-accent:hover{ background:#3d59f5; }
 
-.btn-inverse{ background:var(--ink); color:#fff; }
-.btn-inverse:hover{ background:#000; }
-
 .btn-on-accent{ background:#fff; color:var(--accent); }
 .btn-on-accent:hover{ background:rgba(255,255,255,0.86); }
 
@@ -175,23 +171,11 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 }
 .hero-cta .hint{ font-size:13.5px; color:var(--ink-2); letter-spacing:0.01em; }
 
-.hero-soft-link{
-  display:inline-block;
-  margin-top:20px;
-  font-size:14.5px;
-  color:var(--ink-2);
-  text-decoration:underline;
-  text-underline-offset:3px;
-  transition:color var(--dur-fast) var(--ease);
-}
-.hero-soft-link:hover{ color:var(--accent); }
-
-/* En móvil, el botón, el hint y el enlace secundario se apilan en columna
-   con un espaciado uniforme (en vez del gap + margin-top duplicado que
-   deja el flex-wrap en fila), para que no se vean amontonados. */
+/* En móvil, el botón y el hint se apilan en columna con un espaciado
+   uniforme (en vez del gap del flex-wrap en fila), para que no se vean
+   amontonados. */
 @media (max-width:759px){
   .hero-cta{ flex-direction:column; align-items:flex-start; gap:16px; }
-  .hero-soft-link{ margin-top:0; }
 }
 
 /* Intro de escala/opacidad del hero */
@@ -302,6 +286,31 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 .compare p{ margin-top:18px; color:var(--ink-2); line-height:1.62; font-weight:400; text-wrap:pretty; }
 .compare .card.after p{ color:var(--ink); }
 
+/* Mockups antes / después (ejemplo ilustrativo) */
+.mock{ margin-top:22px; border-radius:14px; border:1px solid var(--border); background:var(--surface); overflow:hidden; font-size:13.5px; line-height:1.35; letter-spacing:-0.01em; }
+.mock-head{ display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--border); font-weight:600; font-size:12.5px; }
+.mock-head span{ color:var(--ink-2); font-weight:500; }
+.chat{ display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid #ececf0; }
+.chat:last-child{ border-bottom:0; }
+.av{ width:30px; height:30px; border-radius:50%; flex:none; background:#e8e8ed; color:var(--ink-2); display:grid; place-items:center; font-size:12px; font-weight:600; }
+.chat-body{ flex:1; min-width:0; }
+.chat-name{ font-weight:600; }
+.chat-msg{ color:var(--ink-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.chat-meta{ text-align:right; font-size:11.5px; color:var(--ink-2); flex:none; }
+.badge{ display:inline-block; margin-top:4px; min-width:20px; padding:1px 6px; border-radius:980px; background:#ff3b30; color:#fff; font-weight:600; font-size:11px; text-align:center; }
+.late{ color:#ff3b30; font-weight:600; }
+.pipe{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:12px; }
+.col-title{ font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-2); margin-bottom:6px; }
+.lead{ background:var(--canvas); border:1px solid #e5e5ea; border-radius:10px; padding:8px 9px; margin-bottom:6px; }
+.lead b{ display:block; font-size:12.5px; }
+.lead small{ color:var(--ink-2); font-size:11.5px; }
+.lead.won{ background:#e9f8ee; border-color:#bfe8cb; }
+.tag{ display:inline-block; margin-top:4px; padding:1px 7px; border-radius:980px; font-size:10.5px; font-weight:600; background:var(--accent-tint); color:var(--accent); }
+.reminder{ display:flex; gap:8px; align-items:center; margin:0 12px 12px; padding:9px 11px; border-radius:10px; background:var(--accent); color:#fff; font-size:12.5px; font-weight:500; }
+.mock-note{ margin-top:10px; font-size:11.5px; color:var(--ink-2); }
+@media (max-width:420px){ .pipe{ gap:6px; padding:10px; } .lead{ padding:7px; } .lead b{ font-size:11.5px; } .lead small{ font-size:10.5px; } .col-title{ font-size:9.5px; letter-spacing:0.04em; } .tag{ font-size:9.5px; padding:1px 5px; } }
+
+
 /* =========================================================
    FOUNDER — foto + bio de confianza antes del formulario
    ========================================================= */
@@ -309,6 +318,7 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   width:100%;
   aspect-ratio:1/1;
   object-fit:cover;
+  object-position:center bottom;
   border-radius:var(--radius-card);
   border:1px solid var(--border);
   box-shadow:0 0 48px var(--accent-border);
@@ -316,55 +326,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
 .founder-copy .accent{ color:var(--accent); font-weight:600; }
 .founder-cta{ margin-top:28px; display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
 .founder-cta .hint{ font-size:13.5px; color:var(--ink-2); letter-spacing:0.01em; }
-
-/* =========================================================
-   DIAGNÓSTICO — formulario
-   ========================================================= */
-.panel{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius-panel);
-  padding:clamp(28px,5vw,72px);
-}
-.form{
-  margin-top:clamp(32px,5vw,48px);
-  max-width:620px;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-.form-row{ display:flex; flex-wrap:wrap; gap:14px; }
-.form input, .form textarea{
-  background:var(--canvas);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:15px 16px;
-  color:var(--ink);
-  font-family:inherit;
-  font-size:15px;
-  outline:none;
-  transition:border-color var(--dur-fast) var(--ease);
-}
-.form input{ flex:1 1 140px; min-width:0; }
-.form textarea{ line-height:1.6; resize:vertical; }
-.form input:focus, .form textarea:focus{ border-color:var(--accent); }
-.form input:focus-visible, .form textarea:focus-visible{ outline:2px solid var(--accent-border); outline-offset:1px; }
-.form .btn{ align-self:flex-start; margin-top:6px; border:none; }
-.form .note{ margin:6px 0 0; font-size:13.5px; color:var(--ink-2); }
-
-.success{
-  margin-top:clamp(36px,5vw,56px);
-  max-width:620px;
-  border:1px solid var(--accent-border);
-  border-radius:14px;
-  padding:clamp(28px,4vw,40px);
-  background:var(--accent-tint);
-}
-.success h3{ font-size:1.375rem; letter-spacing:-0.025em; }
-.success p{ margin-top:12px; color:var(--ink-2); line-height:1.6; font-weight:400; text-wrap:pretty; }
-.success .btn{ margin-top:22px; }
-
-.hidden{ display:none !important; }
 
 /* =========================================================
    CTA FINAL
@@ -454,7 +415,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
         </a>
         <span class="hint">Videollamada · 30 min · Sin compromiso</span>
-        <a class="hero-soft-link hero-el" href="#diagnostico">¿Prefieres contarme tu problema primero? →</a>
       </div>
     </div>
   </div>
@@ -609,10 +569,31 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
       <div class="card before reveal" style="--d:0ms">
         <div class="label">Hoy</div>
         <p>Todo pasa por ti. Mensajes sin contestar, datos regados entre WhatsApp y Excel, seguimientos que se olvidan y cero claridad de tus números.</p>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-head">Chats <span>47 sin leer</span></div>
+          <div class="chat"><div class="av">MR</div><div class="chat-body"><div class="chat-name">Mariana R.</div><div class="chat-msg">Hola, ¿precio? 🙏</div></div><div class="chat-meta"><span class="late">hace 2 días</span><br><span class="badge">3</span></div></div>
+          <div class="chat"><div class="av">CL</div><div class="chat-body"><div class="chat-name">Carlos L.</div><div class="chat-msg">¿Siguen teniendo disponible?</div></div><div class="chat-meta"><span class="late">ayer</span><br><span class="badge">2</span></div></div>
+          <div class="chat"><div class="av">SP</div><div class="chat-body"><div class="chat-name">Sofía P.</div><div class="chat-msg">Ok, lo pienso y te aviso</div></div><div class="chat-meta">lunes</div></div>
+          <div class="chat"><div class="av">JG</div><div class="chat-body"><div class="chat-name">Jorge G.</div><div class="chat-msg">Ya no, gracias. Ya compré en otro lado</div></div><div class="chat-meta">dom</div></div>
+        </div>
       </div>
       <div class="card after reveal" style="--d:90ms">
         <div class="label">Con streamline.systems</div>
         <p>Procesos claros, herramientas conectadas y números a la vista. Tu equipo avanza y tú te enfocas en hacer crecer el negocio.</p>
+        <div class="mock" aria-hidden="true">
+          <div class="mock-head">Tus clientes <span>0 sin responder</span></div>
+          <div class="pipe">
+            <div class="col"><div class="col-title">Nuevos</div>
+              <div class="lead"><b>Mariana R.</b><small>Preguntó precio</small><br><span class="tag">Respondido</span></div>
+              <div class="lead"><b>Carlos L.</b><small>Disponibilidad</small><br><span class="tag">Respondido</span></div></div>
+            <div class="col"><div class="col-title">Seguimiento</div>
+              <div class="lead"><b>Sofía P.</b><small>Lo está pensando</small><br><span class="tag">Hoy 5 pm</span></div></div>
+            <div class="col"><div class="col-title">Cerrados</div>
+              <div class="lead won"><b>Jorge G.</b><small>Compró ✓</small></div></div>
+          </div>
+          <div class="reminder">🔔 Recordatorio: escribirle a Sofía hoy</div>
+        </div>
+        <div class="mock-note">Ejemplo ilustrativo</div>
       </div>
     </div>
 
@@ -648,7 +629,7 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   <div class="wrap">
     <div class="grid-2" style="align-items:center">
       <div class="reveal" style="--d:0ms">
-        <img class="founder-photo" src="jaden.vreal.png" alt="Jaden, fundador de streamline.systems" loading="lazy">
+        <img class="founder-photo" src="founder.jpg" alt="Jaden, fundador de streamline.systems" loading="lazy">
       </div>
       <div class="section-lede founder-copy reveal" style="--d:90ms;max-width:none">
         <div class="eyebrow">Founder</div>
@@ -662,37 +643,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
           </a>
           <span class="hint">En 30 minutos te digo qué mover primero.</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     REVISIÓN RÁPIDA GRATIS — formulario de lead (opción secundaria)
-     ========================================================= -->
-<section id="diagnostico">
-  <div class="wrap">
-    <div class="panel reveal">
-      <div class="section-lede">
-        <div class="eyebrow">Revisión rápida gratis</div>
-        <h2>¿Todavía no quieres agendar? <span class="accent">Cuéntame qué te frena</span></h2>
-        <p>Escríbeme qué es lo que más tiempo te quita o lo que no está funcionando en tu negocio. En unos minutos te llega un correo con 3 observaciones sobre lo que probablemente está pasando.</p>
-      </div>
-
-      <form class="form" id="diagForm">
-        <div class="form-row">
-          <input type="text" name="nombre" placeholder="Tu nombre" required>
-          <input type="email" name="email" placeholder="Tu correo" required>
-        </div>
-        <textarea name="reto" placeholder="Ej. Se me pierden clientes porque no contestamos WhatsApp a tiempo" required rows="4"></textarea>
-        <button type="submit" class="btn btn-inverse">Enviar mi caso</button>
-        <p class="note">Sin spam. Tus datos solo se usan para responderte.</p>
-      </form>
-
-      <div class="success hidden" id="diagSuccess">
-        <h3>¡Listo! Recibí tu mensaje</h3>
-        <p>En unos minutos te llega un correo con mis observaciones. Si no lo ves, revisa tu carpeta de spam o promociones. ¿Prefieres platicarlo directo? Agenda tu revisión gratis:</p>
-        <a class="btn btn-accent" href="https://calendly.com/streamline-systems-ia/llamada-1-1-streamline-systems-ia" target="_blank" rel="noopener">Agendar revisión gratis</a>
       </div>
     </div>
   </div>
@@ -880,21 +830,6 @@ section > .wrap{ padding-block:clamp(76px,11vw,150px); }
   });
   window.addEventListener('resize', refreshAllStripNavs);
   refreshAllStripNavs();
-
-  /* ---------- Formulario de diagnóstico: POST JSON al webhook, sin recargar ---------- */
-  var form = document.getElementById('diagForm');
-  var success = document.getElementById('diagSuccess');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var data = Object.fromEntries(new FormData(form));
-    fetch('https://jadenvreal-n8n.pmjph3.easypanel.host/webhook/lead-diagnostico', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre: data.nombre, email: data.email, reto: data.reto })
-    }).catch(function(){});
-    form.classList.add('hidden');
-    success.classList.remove('hidden');
-  });
 })();
 </script>
 </body>
